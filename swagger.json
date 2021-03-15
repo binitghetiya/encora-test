@@ -1,0 +1,245 @@
+{
+  "openapi": "3.0.0",
+  "servers": [
+    { "url": "http://localhost:3000", "description": "", "variables": {} }
+  ],
+  "info": {
+    "version": "1",
+    "title": "encora-test",
+    "description": "",
+    "termsOfService": "",
+    "contact": {},
+    "license": { "name": "personal use only" }
+  },
+  "paths": {
+    "/api/notes": {
+      "get": {
+        "summary": "Get all Notes",
+        "operationId": "GetallNotes",
+        "parameters": [
+          { "$ref": "#/components/parameters/page" },
+          { "$ref": "#/components/parameters/Content-Type" },
+          { "$ref": "#/components/parameters/x-token" }
+        ],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "tags": ["Notes"]
+      },
+      "post": {
+        "summary": "Add note",
+        "operationId": "Addnote",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "application/json" }
+          },
+          {
+            "name": "x-token",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "{{x-token}}" }
+          }
+        ],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "type": "object", "example": { "note": "test" } },
+              "example": "{\n    \"note\": \"test\"\n}"
+            }
+          }
+        },
+        "tags": ["Notes"]
+      }
+    },
+    "/api/notes/{noteId}": {
+      "put": {
+        "summary": "Update Note",
+        "operationId": "UpdateNote",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "application/json" }
+          },
+          {
+            "name": "x-token",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "{{x-token}}" }
+          },
+          {
+            "name": "noteId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "1" }
+          }
+        ],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "type": "object", "example": { "note": "test" } },
+              "example": "{\n    \"note\": \"test\"\n}"
+            }
+          }
+        },
+        "tags": ["Notes"]
+      },
+      "delete": {
+        "summary": "Delete note",
+        "operationId": "Deletenote",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "application/json" }
+          },
+          {
+            "name": "x-token",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "{{x-token}}" }
+          },
+          {
+            "name": "noteId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "1" }
+          }
+        ],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "tags": ["Notes"]
+      }
+    },
+    "/pub/register": {
+      "post": {
+        "summary": "Register",
+        "operationId": "Register",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "application/json" }
+          }
+        ],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "firstName": "Binit",
+                  "lastName": "Ghetiya",
+                  "email": "binit@gmail.com",
+                  "password": "123456",
+                  "code": "xyz"
+                }
+              },
+              "example": "{\n\t\"firstName\": \"Binit\",\n\t\"lastName\" : \"Ghetiya\",\n\t\"email\": \"binit@gmail.com\",\n\t\"password\": \"123456\",\n\t\"code\": \"xyz\"\n}"
+            }
+          }
+        },
+        "tags": ["Users"]
+      }
+    },
+    "/pub/login": {
+      "post": {
+        "summary": "Login",
+        "operationId": "Login",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "application/json" }
+          }
+        ],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": { "email": "binit@gmail.com", "password": "123456" }
+              },
+              "example": "{\n\t\"email\": \"binit@gmail.com\",\n\t\"password\": \"123456\"\n}"
+            }
+          }
+        },
+        "tags": ["Users"]
+      }
+    },
+    "/api/me": {
+      "get": {
+        "summary": "My Profile",
+        "operationId": "MyProfile",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "application/json" }
+          },
+          {
+            "name": "x-token",
+            "in": "header",
+            "required": true,
+            "style": "simple",
+            "schema": { "type": "string", "example": "{{x-token}}" }
+          }
+        ],
+        "responses": { "200": { "description": "", "headers": {} } },
+        "tags": ["Users"]
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "page": {
+        "name": "page",
+        "in": "query",
+        "required": true,
+        "style": "form",
+        "schema": { "type": "number" }
+      },
+      "Content-Type": {
+        "name": "Content-Type",
+        "in": "header",
+        "required": true,
+        "style": "simple",
+        "schema": { "type": "string", "example": "application/json" }
+      },
+      "x-token": {
+        "name": "x-token",
+        "in": "header",
+        "required": true,
+        "style": "simple",
+        "schema": { "type": "string", "example": "{{x-token}}" }
+      }
+    }
+  },
+  "security": [],
+  "tags": [],
+  "externalDocs": { "url": "", "description": "" }
+}
